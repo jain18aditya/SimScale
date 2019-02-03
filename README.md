@@ -2,24 +2,24 @@
 Framework Details:
 1. Framework is written in Page Object Model where starting point will be Cucumber feature files.
 2. Feature files are consist of plain English language steps. 
-2. All pages and page action are on one place and action on pages (Background code for cucumber steps) are in Cucumber steps.
+3. All pages and page action are on one place and action on pages (Background code for cucumber steps) are in Cucumber steps.
 4. No Hard coded data is used and reading data from application.properties file.
 5. Now you can select which browser to use for execution you need to pass the same in application.properties file.
 
 Logging:
-6. Used log4j for gathering logs and report file will be generated at root location.
+6. Used log4j for gathering logs and log file will be generated at root location.
 7. Used hooks class of Cucumber to improve the logging.
 
 Screenshot:
-Framework takes snapshots if failed at any point.
+8. Framework takes snapshots if failed at any point.
 
 Reports:
-A very good Cucumber reports are generated under target folder
+9. A very good Cucumber reports are generated under target folder
 
 CI:
-Can be easily linked with CI tool and if required all values can be passed through CI tool itself.
+10. Can be easily linked with CI tool and if required all values can be passed through CI tool itself.
 
-Run requirement:
+#Run requirement:
 1. Clone this project
 2. Gradle will download all the dependencies.
 3. Run as either JUnit from runner file or Cucumber feature file.
