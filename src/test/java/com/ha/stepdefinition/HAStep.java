@@ -87,7 +87,7 @@ public class HAStep {
 	
 	private HashMap<String, String> getUserDetails() {
 		HashMap<String, String> userDetails = new HashMap<String, String>();
-		userDetails.put("email", ConfigUtil.getProperty("user.email"));
+		userDetails.put("email", ConfigUtil.getProperty("user.email")+System.currentTimeMillis());
 		userDetails.put("password", ConfigUtil.getProperty("password"));
 		userDetails.put("title", ConfigUtil.getProperty("title"));
 		userDetails.put("firstName", ConfigUtil.getProperty("first.name"));

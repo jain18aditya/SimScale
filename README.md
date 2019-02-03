@@ -19,7 +19,7 @@ Reports:
 CI:
 10. Can be easily linked with CI tool and if required all values can be passed through CI tool itself.
 
-#Run requirement:
+# Run requirement:
 1. Clone this project
 2. Gradle will download all the dependencies.
 3. Run as either JUnit from runner file or Cucumber feature file.
