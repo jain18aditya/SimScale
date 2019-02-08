@@ -22,5 +22,7 @@ CI:
 # Run requirement:
 1. Clone this project
 2. Gradle will download all the dependencies.
-3. Run as either JUnit from runner file or Cucumber feature file.
+3. Run tests: 
+	1. Run as either JUnit from runner file (Right click on TestRunner file present in package com.kindred.runner and run as JUnit)
+	2. Run command prompt and navigate to project folder and run "gradle test"
 4. Check reports.
