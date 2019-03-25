@@ -1,4 +1,4 @@
-# HousingAnywhereTest
+# SimScaleTest
 Framework Details:
 1. Framework is written in Page Object Model where starting point will be Cucumber feature files.
 2. Feature files are consist of plain English language steps. 
