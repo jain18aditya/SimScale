@@ -1,5 +1,8 @@
 package com.simscale.base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Level;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -33,6 +36,17 @@ public abstract class PageBase extends WebDriverBase {
 		return element;
 	}
 
+	public List<WebElement> findElements(By locator) {
+		List<WebElement> elements = new ArrayList<WebElement>();
+		try {
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+			elements = getWebDriver().findElements(locator);
+		} catch (Throwable t) {
+			s_logs.log(Level.ERROR, "Element not found: " + locator, t);
+		}
+		return elements;
+	}
+
 	public void click(By locator) {
 		try {
 			findElement(locator).click();
@@ -44,6 +58,7 @@ public abstract class PageBase extends WebDriverBase {
 
 	public void enter(By locator, String value) {
 		try {
+			waitTillElementVisible(locator);
 			clear(locator);
 			findElement(locator).sendKeys(value);
 			s_logs.log(Level.INFO, "Entered " + value + " in locator: " + locator);
@@ -70,6 +85,21 @@ public abstract class PageBase extends WebDriverBase {
 			s_logs.log(Level.ERROR, "Unable to get Text", e);
 		}
 		return text;
+	}
+
+	public List<String> getTexts(By locator) {
+		List<String> texts = new ArrayList<String>();
+		List<WebElement> webElement = new ArrayList<WebElement>();
+		try {
+			webElement = findElements(locator);
+			for (WebElement we : webElement) {
+				texts.add(we.getText());
+			}
+			s_logs.log(Level.INFO, "Texts for locator: " + locator + " : " + texts);
+		} catch (Exception e) {
+			s_logs.log(Level.ERROR, "Unable to get Texts", e);
+		}
+		return texts;
 	}
 
 	public void waitTillElementVisible(By locator) {

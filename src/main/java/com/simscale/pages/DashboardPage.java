@@ -1,5 +1,7 @@
 package com.simscale.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import com.simscale.base.PageBase;
 
@@ -7,8 +9,8 @@ public class DashboardPage extends PageBase {
 
 	By NewProject_button = By.xpath("//button[@id='newProject']");
 	By ProjectTitle_input = By.xpath("//input[@id='projectTitle']");
-	By ProjectDescription_input = By.xpath("//input[@id='projectDescription']");
-	By ProjectCategory_dropdown = By.xpath("//input[@id='projectCategory']");
+	By ProjectDescription_input = By.xpath("//textarea[@id='projectDescription']");
+	By ProjectCategory_dropdown = By.xpath("//div[@id='projectCategory']");
 	By AddTag_input = By.xpath("//span[@class='tagify__input']");
 	By AdvancedSettings_button = By.xpath("//h5[@class='collapseTitle collapsed']");
 	By measurement_dropdown = By.xpath("//div[@id='measurements']");
@@ -16,6 +18,7 @@ public class DashboardPage extends PageBase {
 	By addFiles_Button = By.xpath("//button[@id='btn-add-files']");
 	By closeProjectWindow_button = By.xpath("//button[@class='close']");
 	By createNewProjectTitle_label = By.xpath("//div[@class='modal-header']//h3[text()='Create New Project']");
+	By projectList_label = By.xpath("//section[@class='projects-list']//p[@class='project-title']");
 	
 	public void clickNewProject() {
 		waitTillElementVisible(NewProject_button);
@@ -31,8 +34,10 @@ public class DashboardPage extends PageBase {
 	}
 
 	public void selectProjectCategory(String category) {
+		By locator = By.xpath("//div[@class='selectOption']/input[@id='"+ category.toUpperCase() +"']"); 
 		click(ProjectCategory_dropdown);
-		click(By.xpath("//div[@class='selectOption']/input[@id="+ category.toUpperCase() +"]"));		
+		waitUntilElementIsClickable(locator);
+		click(locator);
 	}
 
 	public void enterTag(String tag) {
@@ -40,12 +45,15 @@ public class DashboardPage extends PageBase {
 	}
 
 	public void clickAdvanceSetting() {
+		waitUntilElementIsClickable(AdvancedSettings_button);
 		click(AdvancedSettings_button);
 	}
 	
 	public void selectMeasurement(String measurementType) {
+		By locator = By.xpath("//input[@id='"+measurementType.toUpperCase()+"']/following-sibling::label");
 		click(measurement_dropdown);
-		click(By.xpath("//input[@id='"+measurementType.toUpperCase()+"']/following-sibling::label"));		
+		waitUntilElementIsClickable(locator);
+		click(locator);
 	}
 
 	public void clickCreateProject() {
@@ -54,6 +62,11 @@ public class DashboardPage extends PageBase {
 	
 	public void closeProjectWindow() {
 		click(closeProjectWindow_button);
+	}
+
+	public List<String> getProjectList(){
+		waitTillElementVisible(projectList_label);
+		return getTexts(projectList_label);
 	}
 	//////////////// Consolidate functions//////////////
 

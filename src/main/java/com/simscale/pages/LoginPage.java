@@ -44,6 +44,10 @@ public class LoginPage extends PageBase {
 		getWebDriver().get(url);
 	}
 
+	public void navigateToURL(String url) {
+		getWebDriver().navigate().to(url);
+	}
+	
 	public void login(String userName, String password) {
 //		navigateToLoginPage();
 		enterUsername(userName);
