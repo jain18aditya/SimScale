@@ -20,7 +20,6 @@ public abstract class PageBase extends WebDriverBase {
 			Thread.sleep(timeout);
 		} catch (Exception e) {
 			s_logs.log(Level.ERROR, e);
-			e.printStackTrace();
 		}
 	}
 
@@ -30,7 +29,6 @@ public abstract class PageBase extends WebDriverBase {
 			element = getWebDriver().findElement(locator);
 		} catch (Exception e) {
 			s_logs.log(Level.ERROR, "Element not found", e);
-			e.printStackTrace();
 		}
 		return element;
 	}
@@ -41,7 +39,6 @@ public abstract class PageBase extends WebDriverBase {
 			s_logs.log(Level.INFO, "Clicked on locator: " + locator);
 		} catch (Exception e) {
 			s_logs.log(Level.ERROR, "Unable to click" + locator, e);
-			e.printStackTrace();
 		}
 	}
 
@@ -52,7 +49,6 @@ public abstract class PageBase extends WebDriverBase {
 			s_logs.log(Level.INFO, "Entered " + value + " in locator: " + locator);
 		} catch (Exception e) {
 			s_logs.log(Level.ERROR, "Unable to Enter: " + value + " on locator: " + locator, e);
-			e.printStackTrace();
 		}
 	}
 
@@ -62,7 +58,6 @@ public abstract class PageBase extends WebDriverBase {
 			s_logs.log(Level.INFO, "Cleared value of locator: " + locator);
 		} catch (Exception e) {
 			s_logs.log(Level.ERROR, "Unable to Clear", e);
-			e.printStackTrace();
 		}
 	}
 
@@ -73,7 +68,6 @@ public abstract class PageBase extends WebDriverBase {
 			s_logs.log(Level.INFO, "Text for locator: " + locator + " : " + text);
 		} catch (Exception e) {
 			s_logs.log(Level.ERROR, "Unable to get Text", e);
-			e.printStackTrace();
 		}
 		return text;
 	}
@@ -102,7 +96,20 @@ public abstract class PageBase extends WebDriverBase {
 			action.moveToElement(getWebDriver().findElement(clickLocator)).click().perform();
 		} catch (Exception e) {
 			s_logs.log(Level.ERROR, "Unable to do mouse hover", e);
-			e.printStackTrace();
 		}
+	}
+
+	public boolean isDisplayed(By locator) {
+		boolean isDisplayed = false;
+		try {
+			isDisplayed = getWebDriver().findElement(locator).isDisplayed();
+		} catch (Throwable t) {
+			s_logs.log(Level.ERROR, "Element not found");
+		}
+		if (isDisplayed)
+			s_logs.log(Level.INFO, locator + " is displayed");
+		else
+			s_logs.log(Level.INFO, locator + " is not displayed");
+		return isDisplayed;
 	}
 }

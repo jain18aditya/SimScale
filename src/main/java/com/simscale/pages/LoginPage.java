@@ -28,11 +28,11 @@ public class LoginPage extends PageBase {
 		click(Button_Login);
 	}
 
-	private void navigateToLoginPage() {
+/*	private void navigateToLoginPage() {
 		waitTillElementVisible(Login_link);
 		click(Login_link);
 	}
-
+*/
 	private void clickLogoutButton() {
 		waitTillElementVisible(User_link);
 		mouseHover(User_link, Logout_link);
@@ -45,7 +45,7 @@ public class LoginPage extends PageBase {
 	}
 
 	public void login(String userName, String password) {
-		navigateToLoginPage();
+//		navigateToLoginPage();
 		enterUsername(userName);
 		enterPassword(password);
 		clickLoginButton();

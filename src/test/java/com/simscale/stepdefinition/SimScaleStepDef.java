@@ -12,7 +12,7 @@ import cucumber.api.java.en.When;
 public class SimScaleStepDef {
 
 	LoginPage loginPage = new LoginPage();
-	DashboardPage homePage = new DashboardPage();
+	DashboardPage dashboardPage = new DashboardPage();
 	Logger s_logs = LoggerUtil.logger();
 
 	@Given("^Launch browser with url \"([^\"]*)\"$")
@@ -32,7 +32,7 @@ public class SimScaleStepDef {
 
 	@When("^user creates new project with inputs \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
 	public void createProject(String title, String desc, String category, String tag, String measurementType) {
-	System.out.println(title + desc + category + tag + measurementType);
+		dashboardPage.createNewProject(title, desc, category, tag, measurementType);
 	}
 
 	@Then("^Project should get created successfully$")

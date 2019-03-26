@@ -9,5 +9,5 @@ Feature: Create new project workflow
     And Logout the user
 
     Examples: 
-      | ProjectTitle | Project_Description | Category   | Tag        | Measurement_type |
+      | ProjectTitle | Project_Description | Category  | Tag        | Measurement_type |
       | Project1     | ProjectDesc         | Aerospace | ProjectTag | SI               |

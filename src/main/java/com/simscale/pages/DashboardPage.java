@@ -15,8 +15,10 @@ public class DashboardPage extends PageBase {
 	By createProjet_button = By.xpath("//button[@class='btn btn-medium btn-primary btn-create-new-project inputSubmit']");
 	By addFiles_Button = By.xpath("//button[@id='btn-add-files']");
 	By closeProjectWindow_button = By.xpath("//button[@class='close']");
+	By createNewProjectTitle_label = By.xpath("//div[@class='modal-header']//h3[text()='Create New Project']");
 	
 	public void clickNewProject() {
+		waitTillElementVisible(NewProject_button);
 		click(NewProject_button);
 	}
 
@@ -33,7 +35,7 @@ public class DashboardPage extends PageBase {
 		click(By.xpath("//div[@class='selectOption']/input[@id="+ category.toUpperCase() +"]"));		
 	}
 
-	public void addTag(String tag) {
+	public void enterTag(String tag) {
 		enter(AddTag_input, tag);
 	}
 
@@ -55,4 +57,19 @@ public class DashboardPage extends PageBase {
 	}
 	//////////////// Consolidate functions//////////////
 
+	public void createNewProject(String title, String desc, String category, String tag, String measurementType) {
+		waitTillElementVisible(createNewProjectTitle_label);
+		clickNewProject();
+		enterProjectTitle(title);
+		enterDescription(desc);
+		if (category!="")
+			selectProjectCategory(category);
+		if (tag!="")
+			enterTag(tag);
+		if (measurementType!="") {
+			clickAdvanceSetting();
+			selectMeasurement(measurementType);
+		}
+		clickCreateProject();
+	}
 }
