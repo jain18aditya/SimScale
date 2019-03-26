@@ -6,30 +6,36 @@ import com.simscale.base.PageBase;
 
 public class LoginPage extends PageBase {
 
-	By Input_Email = By.xpath("//input[@id='email']");
-	By Input_password = By.xpath("//input[@id='passwd']");
-	By Button_Login = By.xpath("//button[@id='SubmitLogin']");
-	By Login_link = By.xpath("//a[@class='login']");
-	By Logout_link = By.xpath("//a[@class='logout']");
-
+	By Input_Email = By.xpath("//input[@id='emailInput']");
+	By Input_password = By.xpath("//input[@id='passInput']");
+	By Button_Login = By.xpath("//button[@id='authClick']");
+	By Login_link = By.xpath("//li[@class='notLoggedIn btnLogin']/a");
+	By Logout_link = By.xpath("//a[text()='Log Out']");
+	By User_link = By.xpath("//a/span[@class='username']");
+	
 	private void enterUsername(String userName) {
+		waitTillElementVisible(Input_Email);
 		enter(Input_Email, userName);
 	}
 
 	private void enterPassword(String password) {
+		waitTillElementVisible(Input_password);
 		enter(Input_password, password);
 	}
 
 	private void clickLoginButton() {
+		waitTillElementVisible(Button_Login);
 		click(Button_Login);
 	}
 
 	private void navigateToLoginPage() {
+		waitTillElementVisible(Login_link);
 		click(Login_link);
 	}
 
 	private void clickLogoutButton() {
-		click(Logout_link);
+		waitTillElementVisible(User_link);
+		mouseHover(User_link, Logout_link);
 	}
 
 	///////////////////// Consolidate Methods/////////////////////

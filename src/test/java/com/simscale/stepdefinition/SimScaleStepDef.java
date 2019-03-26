@@ -1,7 +1,7 @@
 package com.simscale.stepdefinition;
 
 import org.apache.log4j.Logger;
-import com.simscale.pages.HomePage;
+import com.simscale.pages.DashboardPage;
 import com.simscale.pages.LoginPage;
 import com.simscale.utils.ConfigUtil;
 import com.simscale.utils.LoggerUtil;
@@ -12,7 +12,7 @@ import cucumber.api.java.en.When;
 public class SimScaleStepDef {
 
 	LoginPage loginPage = new LoginPage();
-	HomePage homePage = new HomePage();
+	DashboardPage homePage = new DashboardPage();
 	Logger s_logs = LoggerUtil.logger();
 
 	@Given("^Launch browser with url \"([^\"]*)\"$")

@@ -6,8 +6,8 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = { "pretty", "html:target/html/cucumber.html", "json:target/html/cucumber.json",},
-		features = {"src/test/resources/features/HousingAnywhere.feature" }, 
-		glue = {"com.ha.stepdefinition", "com.ha.hooks" }, 
+		features = {"src/test/resources/features/SimScaleTest.feature" }, 
+		glue = {"com.simscale.stepdefinition", "com.simscale.hooks" }, 
 		monochrome = true)
 
 public class RunnerClass {

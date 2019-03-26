@@ -3,6 +3,7 @@ package com.simscale.base;
 import org.apache.log4j.Level;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -91,6 +92,17 @@ public abstract class PageBase extends WebDriverBase {
 			wait.until(ExpectedConditions.elementToBeClickable(locator));
 		} catch (Exception e) {
 			s_logs.log(Level.ERROR, "Element not found", e);
+		}
+	}
+
+	public void mouseHover(By hoverLocator, By clickLocator) {
+		try {
+			Actions action = new Actions(getWebDriver());
+			action.moveToElement(getWebDriver().findElement(hoverLocator)).perform();
+			action.moveToElement(getWebDriver().findElement(clickLocator)).click().perform();
+		} catch (Exception e) {
+			s_logs.log(Level.ERROR, "Unable to do mouse hover", e);
+			e.printStackTrace();
 		}
 	}
 }
