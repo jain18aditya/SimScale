@@ -18,7 +18,7 @@ public class ConfigUtil {
 		String propertyValue = "";
 		try {
 			input = new FileInputStream(
-					getRootDir() + "/src/test/resources/application.properties");
+					getRootDir() + "/src/main/resources/application.properties");
 			prop.load(input);
 			propertyValue = prop.getProperty(locator);
 		} catch (IOException e) {
