@@ -10,4 +10,4 @@ Feature: Create new project workflow
 
     Examples: 
       | ProjectTitle | Project_Description | Category   | Tag        | Measurement_type |
-      | Project1     | ProjectDesc         | Aerrospace | ProjectTag | SI               |
+      | Project1     | ProjectDesc         | Aerospace | ProjectTag | SI               |

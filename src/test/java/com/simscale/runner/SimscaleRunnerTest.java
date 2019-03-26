@@ -10,6 +10,6 @@ import cucumber.api.junit.Cucumber;
 		glue = {"com.simscale.stepdefinition", "com.simscale.hooks" }, 
 		monochrome = true)
 
-public class RunnerClass {
+public class SimscaleRunnerTest {
 
 }
