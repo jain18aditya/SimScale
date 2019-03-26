@@ -1,5 +1,8 @@
 package com.simscale.base;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -39,6 +42,17 @@ public class WebDriverBase {
 					ConfigUtil.getRootDir() + "/src/test/resources/driver/IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
 			s_logs.log(Level.INFO, "Launched Internet explorer");
+			break;
+
+		case "CHROME EMULATION":
+			Map<String, String> mobileEmulation = new HashMap<>();
+			mobileEmulation.put("deviceName", "iPhone 7");
+			System.setProperty("webdriver.chrome.driver",
+					ConfigUtil.getRootDir() + "/src/test/resources/driver/chromedriver.exe");
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
+			driver = new ChromeDriver(chromeOptions);
+			s_logs.log(Level.INFO, "Launching chrome emulation browser");
 			break;
 		}
 		driver.manage().deleteAllCookies();
