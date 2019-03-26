@@ -42,7 +42,7 @@ public class SimScaleStepDef {
 		dashboardPage.createNewProject(title, desc, category, tag, measurementType);
 	}
 
-	@Then("^Project should get created successfully$")
+	@Then("Project should be displayed on \"([^\"]*)\" with \"([^\"]*)\"$")
 	public void validateProject(String url, String title) {
 		List<String> projectList = new ArrayList<String>();
 		Assert.assertEquals("Invalid title is displayed", "Upload", projectDetailsPage.getuploadTitle());
