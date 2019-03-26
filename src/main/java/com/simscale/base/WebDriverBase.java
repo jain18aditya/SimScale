@@ -32,14 +32,14 @@ public class WebDriverBase {
 			options.addArguments("--test-type");
 			options.addArguments("--disable-notifications");
 			System.setProperty("webdriver.chrome.driver",
-					ConfigUtil.getRootDir() + "/src/test/resources/driver/chromedriver.exe");
+					ConfigUtil.getRootDir() + ConfigUtil.getProperty("browser.path") + "/chromedriver.exe");
 			driver = new ChromeDriver(options);
 			s_logs.log(Level.INFO, "Launched Chrome browser");
 			break;
 
 		case "INTERNET EXPLORER":
 			System.setProperty("webdriver.ie.driver",
-					ConfigUtil.getRootDir() + "/src/test/resources/driver/IEDriverServer.exe");
+					ConfigUtil.getRootDir() + ConfigUtil.getProperty("browser.path") + "/IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
 			s_logs.log(Level.INFO, "Launched Internet explorer");
 			break;
@@ -48,7 +48,7 @@ public class WebDriverBase {
 			Map<String, String> mobileEmulation = new HashMap<>();
 			mobileEmulation.put("deviceName", "iPhone 7");
 			System.setProperty("webdriver.chrome.driver",
-					ConfigUtil.getRootDir() + "/src/test/resources/driver/chromedriver.exe");
+					ConfigUtil.getRootDir() + ConfigUtil.getProperty("browser.path") + "/chromedriver.exe");
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
 			driver = new ChromeDriver(chromeOptions);
