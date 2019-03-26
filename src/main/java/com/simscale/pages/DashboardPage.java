@@ -20,12 +20,12 @@ public class DashboardPage extends PageBase {
 		click(NewProject_button);
 	}
 
-	public void enterProjectTitle() {
-		enter(ProjectTitle_input, "Test1");
+	public void enterProjectTitle(String title) {
+		enter(ProjectTitle_input, title);
 	}
 
-	public void enterDescription() {
-		enter(ProjectDescription_input, "Test1");		
+	public void enterDescription(String desc) {
+		enter(ProjectDescription_input, desc);		
 	}
 
 	public void selectProjectCategory(String category) {
@@ -33,8 +33,8 @@ public class DashboardPage extends PageBase {
 		click(By.xpath("//div[@class='selectOption']/input[@id="+ category.toUpperCase() +"]"));		
 	}
 
-	public void addTag() {
-		enter(AddTag_input, "TagTest1");
+	public void addTag(String tag) {
+		enter(AddTag_input, tag);
 	}
 
 	public void clickAdvanceSetting() {

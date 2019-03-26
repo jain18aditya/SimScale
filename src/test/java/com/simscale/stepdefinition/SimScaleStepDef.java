@@ -30,6 +30,16 @@ public class SimScaleStepDef {
 		loginPage.cleanUP();
 	}
 
+	@When("^user creates new project with inputs \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+	public void createProject(String title, String desc, String category, String tag, String measurementType) {
+	System.out.println(title + desc + category + tag + measurementType);
+	}
+
+	@Then("^Project should get created successfully$")
+	public void validateProject() {
+	}
+
+	
 	@Then("^Logout the user$")
 	public void logoutUser() throws Throwable {
 		loginPage.logout();

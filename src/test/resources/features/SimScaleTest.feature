@@ -1,13 +1,13 @@
-Feature: Place online order
-  I want to use this feature to test product shopping over a website
+Feature: Create new project workflow
+  I want to use this feature file to test create new project workflow on simscale
 
-  Scenario: Register new user and place order
+  Scenario Outline: create new project positive workflow
     Given Launch browser with url "simscale.url"
-	  And User log in with UserName "user.email" and password "password"
-		And Logout the user
+    And User log in with UserName "user.email" and password "password"
+    When user creates new project with inputs "<ProjectTitle>", "<Project_Description>", "<Category>", "<Tag>", "<Measurement_type>"
+    Then Project should get created successfully
+    And Logout the user
 
-  #Scenario: Login with existing user and place order
-    #Given Launch browser with url "simscale.url"
-#	  And User log in with UserName "user.email" and password "password"
-#		And Logout the user
-#		And close the browser
+    Examples: 
+      | ProjectTitle | Project_Description | Category   | Tag        | Measurement_type |
+      | Project1     | ProjectDesc         | Aerrospace | ProjectTag | SI               |
