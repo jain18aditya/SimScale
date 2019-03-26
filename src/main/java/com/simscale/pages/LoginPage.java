@@ -1,6 +1,8 @@
-package com.ha.pages;
+package com.simscale.pages;
 
 import org.openqa.selenium.By;
+
+import com.simscale.base.PageBase;
 
 public class LoginPage extends PageBase {
 
@@ -9,20 +11,20 @@ public class LoginPage extends PageBase {
 	By Button_Login = By.xpath("//button[@id='SubmitLogin']");
 	By Login_link = By.xpath("//a[@class='login']");
 	By Logout_link = By.xpath("//a[@class='logout']");
-	
-	private void enterUsername(String userName){
+
+	private void enterUsername(String userName) {
 		enter(Input_Email, userName);
 	}
 
-	private void enterPassword(String password){
+	private void enterPassword(String password) {
 		enter(Input_password, password);
 	}
 
-	private void clickLoginButton(){
+	private void clickLoginButton() {
 		click(Button_Login);
 	}
-	
-	private void navigateToLoginPage(){
+
+	private void navigateToLoginPage() {
 		click(Login_link);
 	}
 
@@ -42,7 +44,7 @@ public class LoginPage extends PageBase {
 		enterPassword(password);
 		clickLoginButton();
 	}
-	
+
 	public void logout() {
 		clickLogoutButton();
 	}

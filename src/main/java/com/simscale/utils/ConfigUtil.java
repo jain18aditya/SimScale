@@ -1,4 +1,4 @@
-package com.ha.utils;
+package com.simscale.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

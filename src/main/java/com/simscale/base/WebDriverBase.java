@@ -1,4 +1,4 @@
-package com.ha.base;
+package com.simscale.base;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -9,8 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.ha.utils.ConfigUtil;
-import com.ha.utils.LoggerUtil;
+import com.simscale.utils.ConfigUtil;
+import com.simscale.utils.LoggerUtil;
 
 public class WebDriverBase {
 	private static WebDriver driver = null;
@@ -35,8 +35,8 @@ public class WebDriverBase {
 			break;
 
 		case "INTERNET EXPLORER":
-			System.setProperty("webdriver.ie.driver", ConfigUtil.getRootDir()
-					+ "/src/test/resources/driver/IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver",
+					ConfigUtil.getRootDir() + "/src/test/resources/driver/IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
 			s_logs.log(Level.INFO, "Launched Internet explorer");
 			break;
@@ -54,7 +54,10 @@ public class WebDriverBase {
 
 	public WebDriver getWebDriver() {
 		if (driver == null) {
-			loadWebDriver(ConfigUtil.getProperty("browser"));
+			String browser = ConfigUtil.getProperty("browser");
+			if (System.getenv("browser") != null)
+				browser = System.getenv("browser");
+			loadWebDriver(browser);
 		}
 		return driver;
 	}

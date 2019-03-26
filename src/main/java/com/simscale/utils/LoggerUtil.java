@@ -1,4 +1,4 @@
-package com.ha.utils;
+package com.simscale.utils;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;

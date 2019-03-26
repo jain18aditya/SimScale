@@ -1,4 +1,4 @@
-package com.ha.utils;
+package com.simscale.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import com.ha.base.WebDriverBase;
+import com.simscale.base.WebDriverBase;
 
 public class WebUIUtil {
 	static WebDriverBase wd = new WebDriverBase();

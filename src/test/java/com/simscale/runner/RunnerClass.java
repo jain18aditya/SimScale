@@ -1,4 +1,4 @@
-package com.ha.runner;
+package com.simscale.runner;
 
 import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
