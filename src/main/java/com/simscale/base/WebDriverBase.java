@@ -31,8 +31,13 @@ public class WebDriverBase {
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--test-type");
 			options.addArguments("--disable-notifications");
-			System.setProperty("webdriver.chrome.driver",
-					ConfigUtil.getRootDir() + ConfigUtil.getProperty("browser.path") + "/chromedriver.exe");
+			if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
+				System.setProperty("webdriver.chrome.driver",
+						ConfigUtil.getRootDir() + ConfigUtil.getProperty("browser.path") + "/chromedriver.exe");
+			} else {
+				System.setProperty("webdriver.chrome.driver",
+						ConfigUtil.getRootDir() + ConfigUtil.getProperty("browser.path") + "/chromedriver");
+			}
 			driver = new ChromeDriver(options);
 			s_logs.log(Level.INFO, "Launched Chrome browser");
 			break;

@@ -10,6 +10,6 @@ Feature: Create new project workflow
 
 		#Project title and description are mandatory params
     Examples: 
-      | ProjectTitle | Project_Description | Category  | Tag        | Measurement_type |
+     	| ProjectTitle | Project_Description | Category  | Tag        | Measurement_type |
       | Project1     | ProjectDesc1        | Aerospace | ProjectTag | SI               |
       | Project2     | ProjectDesc2        | 					 | 						|                  |
