@@ -24,5 +24,5 @@ Feature: Create new project workflow
     #Pass "All" if want to delete all the projects ot pass specific name
     Examples: 
       | ProjectTitle |
-      | qwertyu      |
-      | asfhj        |
+      | Project1      |
+      | Project2        |
