@@ -18,7 +18,8 @@ public class Hooks {
 
 	@After
 	public void afterScenario(Scenario scene) {
-		log.log(Level.INFO, "Scenario " + scene.getName() + " is: " + scene.getStatus().firstLetterCapitalizedName());
+		log.log(Level.INFO, "************Scenario "+scene.getName()+ " is Finished************");
+		log.log(Level.INFO, "Scenario " + scene.getName() + " is:::: " + scene.getStatus().firstLetterCapitalizedName());
 		if (scene.isFailed()) {
 			WebUIUtil.captureScreenShot(scene.getName().replace(" ", "") + System.currentTimeMillis());
 		}

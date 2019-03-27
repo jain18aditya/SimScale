@@ -22,6 +22,7 @@ public class SimScaleStepDef {
 	ProjectDetailsPage projectDetailsPage = new ProjectDetailsPage();
 	Logger s_logs = LoggerUtil.logger();
 	int projectsCount = 0;
+	boolean status = false;
 
 	@Given("^Launch browser with url \"([^\"]*)\"$")
 	public void launchBrowser(String url) throws Throwable {
@@ -56,6 +57,31 @@ public class SimScaleStepDef {
 		Assert.assertEquals("Project added is not present in the list", true, projectList.contains(title));
 	}
 
+	@When("User deletes {string}")
+	public void deleteProject(String projectName) {
+		projectsCount = dashboardPage.getProjectList().size();
+		if(projectsCount > 0)
+			dashboardPage.deleteProject(projectName);
+		else
+			s_logs.log(Level.INFO, "No projects are present to delete");			
+	}
+
+	@Then("validate {string} is deleted")
+	public void validateDeletion(String projectName) {
+		List<String> projectList = new ArrayList<String>();
+		projectList = dashboardPage.getProjectList();
+		if(projectList.size()>0) {
+			int expectedCount = 0;
+			if (!projectName.equals("All")) 
+				expectedCount = projectsCount -1;
+			s_logs.log(Level.INFO, "Total project list is " + projectList);
+			Assert.assertEquals("Invalid project count is displayed", expectedCount, projectList.size());
+		}
+		else
+			s_logs.log(Level.INFO, "No projects are present to delete");
+//		Assert.assertEquals("Invalid deletion status present", true, status);
+	}
+	
 	@Then("^Logout the user$")
 	public void logoutUser() throws Throwable {
 		loginPage.logout();

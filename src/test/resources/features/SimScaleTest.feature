@@ -8,8 +8,21 @@ Feature: Create new project workflow
     Then Project should be displayed on "simscale.url" with "<ProjectTitle>"
     And Logout the user
 
-		#Project title and description are mandatory params
+    #Project title and description are mandatory params
     Examples: 
-     	| ProjectTitle | Project_Description | Category  | Tag        | Measurement_type |
+      | ProjectTitle | Project_Description | Category  | Tag        | Measurement_type |
       | Project1     | ProjectDesc1        | Aerospace | ProjectTag | SI               |
-      | Project2     | ProjectDesc2        | 					 | 						|                  |
+      | Project2     | ProjectDesc2        |           |            |                  |
+
+  Scenario Outline: 
+    Given Launch browser with url "simscale.url"
+    And User log in with UserName "user.email" and password "password"
+    When User deletes "<ProjectTitle>"
+    Then validate "<ProjectTitle>" is deleted
+    And Logout the user
+
+    #Pass "All" if want to delete all the projects ot pass specific name
+    Examples: 
+      | ProjectTitle |
+      | qwertyu      |
+      | asfhj        |

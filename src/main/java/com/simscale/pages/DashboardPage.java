@@ -1,12 +1,16 @@
 package com.simscale.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Level;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import com.simscale.base.PageBase;
 
 public class DashboardPage extends PageBase {
 
+	ProjectDetailsPage projectDetailsPage = new ProjectDetailsPage();
 	By NewProject_button = By.xpath("//button[@id='newProject']");
 	By ProjectTitle_input = By.xpath("//input[@id='projectTitle']");
 	By ProjectDescription_input = By.xpath("//textarea[@id='projectDescription']");
@@ -20,7 +24,8 @@ public class DashboardPage extends PageBase {
 	By closeProjectWindow_button = By.xpath("//button[@class='close']");
 	By createNewProjectTitle_label = By.xpath("//div[@class='modal-header']//h3[text()='Create New Project']");
 	By projectList_label = By.xpath("//section[@class='projects-list']//p[@class='project-title']");
-
+	By dashboard_tab = By.xpath("//li/a[text()='Dashboard']");
+	
 	public void clickNewProject() {
 		waitTillElementVisible(NewProject_button);
 		click(NewProject_button);
@@ -43,8 +48,6 @@ public class DashboardPage extends PageBase {
 
 	public void enterTag(String tag) {
 		enter(AddTag_input, tag);
-		// waitTillElementVisible(tag_dropdown);
-		// click(tag_dropdown);
 	}
 
 	public void clickAdvanceSetting() {
@@ -71,7 +74,15 @@ public class DashboardPage extends PageBase {
 		waitTillElementVisible(projectList_label);
 		return getTexts(projectList_label);
 	}
-	//////////////// Consolidate functions//////////////
+
+	private void selectProject(WebElement locator) {
+		waitUntilElementIsClickable(NewProject_button);
+		waitTillElementVisible(NewProject_button);
+		waitTillElementVisible(projectList_label);
+		locator.click();
+		s_logs.log(Level.INFO, "Clicked on locator:"+ locator);
+	}
+//////////////// Consolidate functions//////////////
 
 	public void createNewProject(String title, String desc, String category, String tag, String measurementType) {
 		waitTillElementVisible(createNewProjectTitle_label);
@@ -88,4 +99,24 @@ public class DashboardPage extends PageBase {
 		}
 		clickCreateProject();
 	}
+
+	public void deleteProject(String projectName) {
+		List<WebElement> projectList = new ArrayList<WebElement>();
+		projectList = findElements(projectList_label);
+		System.out.println("projectList::::::::"+projectList);
+		if(projectName.equals("All")) {
+			for(int i = 0; i<projectList.size(); i++) {
+				selectProject(projectList.get(i));
+				projectDetailsPage.deleteProject();
+			}
+		}
+		else {
+			for(int i = 0; i<projectList.size(); i++) {
+				if(projectList.get(i).getText().equals(projectName)) {
+					selectProject(projectList.get(i));
+					projectDetailsPage.deleteProject();
+				}
+			}
+		}
+	}	
 }
