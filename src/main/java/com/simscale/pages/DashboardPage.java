@@ -20,8 +20,6 @@ public class DashboardPage extends PageBase {
 	By closeProjectWindow_button = By.xpath("//button[@class='close']");
 	By createNewProjectTitle_label = By.xpath("//div[@class='modal-header']//h3[text()='Create New Project']");
 	By projectList_label = By.xpath("//section[@class='projects-list']//p[@class='project-title']");
-	// By tag_dropdown = By.xpath("//div[@class='tagify__dropdown__item
-	// tagify__dropdown__item--active']");
 
 	public void clickNewProject() {
 		waitTillElementVisible(NewProject_button);
@@ -80,11 +78,11 @@ public class DashboardPage extends PageBase {
 		clickNewProject();
 		enterProjectTitle(title);
 		enterDescription(desc);
-		if (category != "")
+		if (!category.equals(""))
 			selectProjectCategory(category);
-		if (tag != "")
+		if (!tag.equals(""))
 			enterTag(tag);
-		if (measurementType != "") {
+		if (!measurementType.equals("")) {
 			clickAdvanceSetting();
 			selectMeasurement(measurementType);
 		}
