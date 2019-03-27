@@ -7,7 +7,6 @@ repositories {
 }
 
 dependencies {
-	runtime files(org.gradle.internal.jvm.Jvm.current().toolsJar)
 	testCompile group: 'junit', name: 'junit', version: '4.12'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
 	compile group: 'log4j', name: 'log4j', version: '1.2.17'
