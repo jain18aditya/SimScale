@@ -1,5 +1,6 @@
 package com.simscale.pages;
 
+import org.apache.log4j.Level;
 import org.openqa.selenium.By;
 
 import com.simscale.base.PageBase;
@@ -11,7 +12,7 @@ public class LoginPage extends PageBase {
 	By Button_Login = By.xpath("//button[@id='authClick']");
 	By Login_link = By.xpath("//li[@class='notLoggedIn btnLogin']/a");
 	By Logout_link = By.xpath("//a[text()='Log Out']");
-	By User_link = By.xpath("//a/span[@class='username']");
+	By User_link = By.xpath("//li[@class='sub-menu ']/a[@data-hj-suppress='']");
 
 	private void enterUsername(String userName) {
 		waitTillElementVisible(Input_Email);
@@ -56,5 +57,6 @@ public class LoginPage extends PageBase {
 
 	public void logout() {
 		clickLogoutButton();
+		s_logs.log(Level.INFO, "Logout is sucessful");
 	}
 }
