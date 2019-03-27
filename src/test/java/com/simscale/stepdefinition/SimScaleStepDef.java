@@ -2,6 +2,8 @@ package com.simscale.stepdefinition;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import com.simscale.pages.DashboardPage;
@@ -46,8 +48,10 @@ public class SimScaleStepDef {
 	public void validateProject(String url, String title) {
 		List<String> projectList = new ArrayList<String>();
 		Assert.assertEquals("Invalid title is displayed", "Upload", projectDetailsPage.getuploadTitle());
+		s_logs.log(Level.INFO, "Project created successfully with name "+title);
 		loginPage.navigateToURL(ConfigUtil.getProperty(url));
 		projectList = dashboardPage.getProjectList();
+		s_logs.log(Level.INFO, "Total project list is "+projectList);
 		Assert.assertEquals("Invalid project count is displayed", projectsCount+1, projectList.size());
 		Assert.assertEquals("Project added is not present in the list", true, projectList.contains(title));
 	}

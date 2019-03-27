@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Level;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,10 +40,10 @@ public abstract class PageBase extends WebDriverBase {
 	public List<WebElement> findElements(By locator) {
 		List<WebElement> elements = new ArrayList<WebElement>();
 		try {
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+//			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 			elements = getWebDriver().findElements(locator);
-		} catch (Throwable t) {
-			s_logs.log(Level.ERROR, "Element not found: " + locator, t);
+		} catch (Exception e) {
+			s_logs.log(Level.ERROR, "Element not found: " + locator, e);
 		}
 		return elements;
 	}
@@ -141,5 +142,15 @@ public abstract class PageBase extends WebDriverBase {
 		else
 			s_logs.log(Level.INFO, locator + " is not displayed");
 		return isDisplayed;
+	}
+
+	public void clickJS(WebElement locator) {
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
+			js.executeScript("arguments[0].click();", locator);
+			s_logs.log(Level.INFO, "Clicked on locator: " + locator);
+		} catch (Exception e) {
+			s_logs.log(Level.ERROR, "Unable to click" + locator, e);
+		}
 	}
 }

@@ -19,6 +19,7 @@ public class DashboardPage extends PageBase {
 	By closeProjectWindow_button = By.xpath("//button[@class='close']");
 	By createNewProjectTitle_label = By.xpath("//div[@class='modal-header']//h3[text()='Create New Project']");
 	By projectList_label = By.xpath("//section[@class='projects-list']//p[@class='project-title']");
+//	By tag_dropdown = By.xpath("//div[@class='tagify__dropdown__item tagify__dropdown__item--active']");
 	
 	public void clickNewProject() {
 		waitTillElementVisible(NewProject_button);
@@ -36,12 +37,14 @@ public class DashboardPage extends PageBase {
 	public void selectProjectCategory(String category) {
 		By locator = By.xpath("//div[@class='selectOption']/input[@id='"+ category.toUpperCase() +"']"); 
 		click(ProjectCategory_dropdown);
-		waitUntilElementIsClickable(locator);
-		click(locator);
+		waitTillElementVisible(locator);
+		clickJS(findElement(locator));
 	}
 
 	public void enterTag(String tag) {
 		enter(AddTag_input, tag);
+//		waitTillElementVisible(tag_dropdown);
+//		click(tag_dropdown);
 	}
 
 	public void clickAdvanceSetting() {
@@ -52,12 +55,12 @@ public class DashboardPage extends PageBase {
 	public void selectMeasurement(String measurementType) {
 		By locator = By.xpath("//input[@id='"+measurementType.toUpperCase()+"']/following-sibling::label");
 		click(measurement_dropdown);
-		waitUntilElementIsClickable(locator);
-		click(locator);
+		waitTillElementVisible(locator);
+		clickJS(findElement(locator));
 	}
 
 	public void clickCreateProject() {
-		click(createProjet_button);
+		clickJS(findElement(createProjet_button));
 	}
 	
 	public void closeProjectWindow() {
