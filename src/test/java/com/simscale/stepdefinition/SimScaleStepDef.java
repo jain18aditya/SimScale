@@ -22,7 +22,7 @@ public class SimScaleStepDef {
 	ProjectDetailsPage projectDetailsPage = new ProjectDetailsPage();
 	Logger s_logs = LoggerUtil.logger();
 	int projectsCount = 0;
-	
+
 	@Given("^Launch browser with url \"([^\"]*)\"$")
 	public void launchBrowser(String url) throws Throwable {
 		loginPage.launchApplication(ConfigUtil.getProperty(url));
@@ -48,15 +48,14 @@ public class SimScaleStepDef {
 	public void validateProject(String url, String title) {
 		List<String> projectList = new ArrayList<String>();
 		Assert.assertEquals("Invalid title is displayed", "Upload", projectDetailsPage.getuploadTitle());
-		s_logs.log(Level.INFO, "Project created successfully with name "+title);
+		s_logs.log(Level.INFO, "Project created successfully with name " + title);
 		loginPage.navigateToURL(ConfigUtil.getProperty(url));
 		projectList = dashboardPage.getProjectList();
-		s_logs.log(Level.INFO, "Total project list is "+projectList);
-		Assert.assertEquals("Invalid project count is displayed", projectsCount+1, projectList.size());
+		s_logs.log(Level.INFO, "Total project list is " + projectList);
+		Assert.assertEquals("Invalid project count is displayed", projectsCount + 1, projectList.size());
 		Assert.assertEquals("Project added is not present in the list", true, projectList.contains(title));
 	}
 
-	
 	@Then("^Logout the user$")
 	public void logoutUser() throws Throwable {
 		loginPage.logout();

@@ -9,8 +9,7 @@ public class LoggerUtil {
 
 	public static Logger logger() {
 		if (loggerNull == null) {
-			PropertyConfigurator.configure(
-					ConfigUtil.getRootDir() + "/log4j.properties");
+			PropertyConfigurator.configure(ConfigUtil.getRootDir() + "/log4j.properties");
 			loggerNull = "loggerSet";
 		}
 		return logger;

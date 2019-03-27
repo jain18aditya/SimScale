@@ -14,13 +14,15 @@ public class DashboardPage extends PageBase {
 	By AddTag_input = By.xpath("//span[@class='tagify__input']");
 	By AdvancedSettings_button = By.xpath("//h5[@class='collapseTitle collapsed']");
 	By measurement_dropdown = By.xpath("//div[@id='measurements']");
-	By createProjet_button = By.xpath("//button[@class='btn btn-medium btn-primary btn-create-new-project inputSubmit']");
+	By createProjet_button = By
+			.xpath("//button[@class='btn btn-medium btn-primary btn-create-new-project inputSubmit']");
 	By addFiles_Button = By.xpath("//button[@id='btn-add-files']");
 	By closeProjectWindow_button = By.xpath("//button[@class='close']");
 	By createNewProjectTitle_label = By.xpath("//div[@class='modal-header']//h3[text()='Create New Project']");
 	By projectList_label = By.xpath("//section[@class='projects-list']//p[@class='project-title']");
-//	By tag_dropdown = By.xpath("//div[@class='tagify__dropdown__item tagify__dropdown__item--active']");
-	
+	// By tag_dropdown = By.xpath("//div[@class='tagify__dropdown__item
+	// tagify__dropdown__item--active']");
+
 	public void clickNewProject() {
 		waitTillElementVisible(NewProject_button);
 		click(NewProject_button);
@@ -31,11 +33,11 @@ public class DashboardPage extends PageBase {
 	}
 
 	public void enterDescription(String desc) {
-		enter(ProjectDescription_input, desc);		
+		enter(ProjectDescription_input, desc);
 	}
 
 	public void selectProjectCategory(String category) {
-		By locator = By.xpath("//div[@class='selectOption']/input[@id='"+ category.toUpperCase() +"']"); 
+		By locator = By.xpath("//div[@class='selectOption']/input[@id='" + category.toUpperCase() + "']");
 		click(ProjectCategory_dropdown);
 		waitTillElementVisible(locator);
 		clickJS(findElement(locator));
@@ -43,17 +45,17 @@ public class DashboardPage extends PageBase {
 
 	public void enterTag(String tag) {
 		enter(AddTag_input, tag);
-//		waitTillElementVisible(tag_dropdown);
-//		click(tag_dropdown);
+		// waitTillElementVisible(tag_dropdown);
+		// click(tag_dropdown);
 	}
 
 	public void clickAdvanceSetting() {
 		waitUntilElementIsClickable(AdvancedSettings_button);
 		click(AdvancedSettings_button);
 	}
-	
+
 	public void selectMeasurement(String measurementType) {
-		By locator = By.xpath("//input[@id='"+measurementType.toUpperCase()+"']/following-sibling::label");
+		By locator = By.xpath("//input[@id='" + measurementType.toUpperCase() + "']/following-sibling::label");
 		click(measurement_dropdown);
 		waitTillElementVisible(locator);
 		clickJS(findElement(locator));
@@ -62,12 +64,12 @@ public class DashboardPage extends PageBase {
 	public void clickCreateProject() {
 		clickJS(findElement(createProjet_button));
 	}
-	
+
 	public void closeProjectWindow() {
 		click(closeProjectWindow_button);
 	}
 
-	public List<String> getProjectList(){
+	public List<String> getProjectList() {
 		waitTillElementVisible(projectList_label);
 		return getTexts(projectList_label);
 	}
@@ -78,11 +80,11 @@ public class DashboardPage extends PageBase {
 		clickNewProject();
 		enterProjectTitle(title);
 		enterDescription(desc);
-		if (category!="")
+		if (category != "")
 			selectProjectCategory(category);
-		if (tag!="")
+		if (tag != "")
 			enterTag(tag);
-		if (measurementType!="") {
+		if (measurementType != "") {
 			clickAdvanceSetting();
 			selectMeasurement(measurementType);
 		}

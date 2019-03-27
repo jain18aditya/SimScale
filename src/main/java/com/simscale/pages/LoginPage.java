@@ -12,7 +12,7 @@ public class LoginPage extends PageBase {
 	By Login_link = By.xpath("//li[@class='notLoggedIn btnLogin']/a");
 	By Logout_link = By.xpath("//a[text()='Log Out']");
 	By User_link = By.xpath("//a/span[@class='username']");
-	
+
 	private void enterUsername(String userName) {
 		waitTillElementVisible(Input_Email);
 		enter(Input_Email, userName);
@@ -28,11 +28,10 @@ public class LoginPage extends PageBase {
 		click(Button_Login);
 	}
 
-/*	private void navigateToLoginPage() {
-		waitTillElementVisible(Login_link);
-		click(Login_link);
-	}
-*/
+	/*
+	 * private void navigateToLoginPage() { waitTillElementVisible(Login_link);
+	 * click(Login_link); }
+	 */
 	private void clickLogoutButton() {
 		waitTillElementVisible(User_link);
 		mouseHover(User_link, Logout_link);
@@ -47,9 +46,9 @@ public class LoginPage extends PageBase {
 	public void navigateToURL(String url) {
 		getWebDriver().navigate().to(url);
 	}
-	
+
 	public void login(String userName, String password) {
-//		navigateToLoginPage();
+		// navigateToLoginPage();
 		enterUsername(userName);
 		enterPassword(password);
 		clickLoginButton();

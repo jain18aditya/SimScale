@@ -40,7 +40,7 @@ public abstract class PageBase extends WebDriverBase {
 	public List<WebElement> findElements(By locator) {
 		List<WebElement> elements = new ArrayList<WebElement>();
 		try {
-//			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+			// wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 			elements = getWebDriver().findElements(locator);
 		} catch (Exception e) {
 			s_logs.log(Level.ERROR, "Element not found: " + locator, e);
