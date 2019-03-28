@@ -1,9 +1,11 @@
 Feature: Create new project workflow
   I want to use this feature file to test create new project workflow on simscale
 
-  Scenario Outline: create new project positive workflow
+	Background:
     Given Launch browser with url "simscale.url"
     And User log in with UserName "user.email" and password "password"
+	
+  Scenario Outline: create new project positive workflow
     When user creates new project with inputs "<ProjectTitle>", "<Project_Description>", "<Category>", "<Tag>", "<Measurement_type>"
     Then Project should be displayed on "simscale.url" with "<ProjectTitle>"
     And Logout the user
@@ -15,13 +17,11 @@ Feature: Create new project workflow
       | Project2     | ProjectDesc2        |           |            |                  |
 
   Scenario Outline: Delete project positive workflow
-    Given Launch browser with url "simscale.url"
-    And User log in with UserName "user.email" and password "password"
     When User deletes "<ProjectTitle>"
     Then validate "<ProjectTitle>" is deleted
     And Logout the user
+		And close the browser
 
-    #Pass "All" if want to delete all the projects ot pass specific name
     Examples: 
       | ProjectTitle |
       | Project1     |
