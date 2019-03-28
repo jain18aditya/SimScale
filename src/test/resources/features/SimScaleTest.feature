@@ -1,10 +1,10 @@
 Feature: Create new project workflow
   I want to use this feature file to test create new project workflow on simscale
 
-	Background:
+  Background: 
     Given Launch browser with url "simscale.url"
     And User log in with UserName "user.email" and password "password"
-	
+
   Scenario Outline: create new project positive workflow
     When user creates new project with inputs "<ProjectTitle>", "<Project_Description>", "<Category>", "<Tag>", "<Measurement_type>"
     Then Project should be displayed on "simscale.url" with "<ProjectTitle>"
@@ -20,7 +20,7 @@ Feature: Create new project workflow
     When User deletes "<ProjectTitle>"
     Then validate "<ProjectTitle>" is deleted
     And Logout the user
-		And close the browser
+    And close the browser
 
     Examples: 
       | ProjectTitle |
