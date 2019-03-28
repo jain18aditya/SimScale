@@ -16,7 +16,7 @@ public class DashboardPage extends PageBase {
 	By ProjectDescription_input = By.xpath("//textarea[@id='projectDescription']");
 	By ProjectCategory_dropdown = By.xpath("//div[@id='projectCategory']");
 	By AddTag_input = By.xpath("//span[@class='tagify__input']");
-	By AdvancedSettings_button = By.xpath("//h5[@class='collapseTitle collapsed']");
+	By AdvancedSettings_button = By.xpath("//h5[contains(@class,'collapseTitle')]");
 	By measurement_dropdown = By.xpath("//div[@id='measurements']");
 	By createProjet_button = By
 			.xpath("//button[@class='btn btn-medium btn-primary btn-create-new-project inputSubmit']");
@@ -51,12 +51,14 @@ public class DashboardPage extends PageBase {
 	}
 
 	public void clickAdvanceSetting() {
-		waitUntilElementIsClickable(AdvancedSettings_button);
-		click(AdvancedSettings_button);
+		waitTillElementVisible(AdvancedSettings_button);
+		clickJS(findElement(AdvancedSettings_button));
+//		click(AdvancedSettings_button);
 	}
 
 	public void selectMeasurement(String measurementType) {
 		By locator = By.xpath("//input[@id='" + measurementType.toUpperCase() + "']/following-sibling::label");
+		waitTillElementVisible(measurement_dropdown);
 		click(measurement_dropdown);
 		waitTillElementVisible(locator);
 		clickJS(findElement(locator));
@@ -103,7 +105,6 @@ public class DashboardPage extends PageBase {
 	public void deleteProject(String projectName) {
 		List<WebElement> projectList = new ArrayList<WebElement>();
 		projectList = findElements(projectList_label);
-		System.out.println("projectList::::::::"+projectList);
 		if(projectName.equals("All")) {
 			for(int i = 0; i<projectList.size(); i++) {
 				selectProject(projectList.get(i));
@@ -115,6 +116,7 @@ public class DashboardPage extends PageBase {
 				if(projectList.get(i).getText().equals(projectName)) {
 					selectProject(projectList.get(i));
 					projectDetailsPage.deleteProject();
+					break;
 				}
 			}
 		}

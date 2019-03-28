@@ -14,7 +14,7 @@ Feature: Create new project workflow
       | Project1     | ProjectDesc1        | Aerospace | ProjectTag | SI               |
       | Project2     | ProjectDesc2        |           |            |                  |
 
-  Scenario Outline: 
+  Scenario Outline: Delete project positive workflow
     Given Launch browser with url "simscale.url"
     And User log in with UserName "user.email" and password "password"
     When User deletes "<ProjectTitle>"
