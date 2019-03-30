@@ -77,6 +77,16 @@ public class SimScaleStepDef {
 		Assert.assertEquals("Invalid project count is displayed", expectedCount, projectList.size());
 	}
 	
+	@Then("Validate error message for {string}, {string}, {string}")
+	public void validateErrorMessage(String projectTitle, String projectDesc, String errorMessage) {
+		List<String> errorList = new ArrayList<String>();
+		errorList = dashboardPage.getErrorMessage();
+		for (int i=0; i<errorList.size();i++) {
+			System.out.println(errorList.get(i));
+		}
+		Assert.assertEquals("Invalid error message is displayed", true,	errorList.contains(errorMessage));
+	}
+
 	@Then("^Logout the user$")
 	public void logoutUser() throws Throwable {
 		loginPage.logout();

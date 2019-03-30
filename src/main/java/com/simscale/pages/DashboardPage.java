@@ -25,7 +25,8 @@ public class DashboardPage extends PageBase {
 	By createNewProjectTitle_label = By.xpath("//div[@class='modal-header']//h3[text()='Create New Project']");
 	By projectList_label = By.xpath("//section[@class='projects-list']//p[@class='project-title']");
 	By dashboard_tab = By.xpath("//li/a[text()='Dashboard']");
-	
+	By errorMessageList_label = By.xpath("//span[@class='inputGroup__error']");
+
 	public void clickNewProject() {
 		waitTillElementVisible(NewProject_button);
 		click(NewProject_button);
@@ -89,8 +90,10 @@ public class DashboardPage extends PageBase {
 	public void createNewProject(String title, String desc, String category, String tag, String measurementType) {
 		waitTillElementVisible(createNewProjectTitle_label);
 		clickNewProject();
-		enterProjectTitle(title);
-		enterDescription(desc);
+		if (!title.equals(""))
+			enterProjectTitle(title);
+		if (!desc.equals(""))
+			enterDescription(desc);
 		if (!category.equals(""))
 			selectProjectCategory(category);
 		if (!tag.equals(""))
@@ -120,5 +123,10 @@ public class DashboardPage extends PageBase {
 				}
 			}
 		}
+	}
+
+	public List<String> getErrorMessage() {
+		waitTillElementVisible(errorMessageList_label);
+		return getTexts(errorMessageList_label);
 	}	
 }

@@ -9,15 +9,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class PageBase extends WebDriverBase {
-
-	public void waitTillElementVisible(By locator, int timeout) {
-		s_logs.log(Level.INFO, "Waiting for locator " + locator);
-		WebDriverWait waitLong = new WebDriverWait(getWebDriver(), timeout);
-		waitLong.until(ExpectedConditions.visibilityOfElementLocated(locator));
-	}
 
 	public void sleep(int timeout) {
 		try {

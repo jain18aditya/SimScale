@@ -10,7 +10,7 @@ Feature: Create new project workflow
     Then Project should be displayed on "simscale.url" with "<ProjectTitle>"
     And Logout the user
 
-    #Project title and description are mandatory params
+    #  Project title and description are mandatory params
     Examples: 
       | ProjectTitle | Project_Description | Category  | Tag        | Measurement_type |
       | Project1     | ProjectDesc1        | Aerospace | ProjectTag | SI               |
@@ -26,3 +26,13 @@ Feature: Create new project workflow
       | ProjectTitle |
       | Project1     |
       | Project2     |
+
+  Scenario Outline: field validation
+    When user creates new project with inputs "<ProjectTitle>", "<Project_Description>", "<Category>", "<Tag>", "<Measurement_type>"
+    Then Validate error message for "<ProjectTitle>", "<Project_Description>", "<errorMessage>"
+    And Logout the user
+
+    Examples: 
+      | ProjectTitle | Project_Description | Category | Tag | Measurement_type | errorMessage                                                       |
+      |              | ProjectDesc1        |          |     |                  | Project title must be at least 5 characters long                   |
+      | Project2     |                     |          |     |                  | Description must be at least 5 characters long for public projects |
