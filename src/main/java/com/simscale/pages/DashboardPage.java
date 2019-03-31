@@ -70,6 +70,7 @@ public class DashboardPage extends PageBase {
 	}
 
 	public void closeProjectWindow() {
+		waitUntilElementIsClickable(closeProjectWindow_button);
 		click(closeProjectWindow_button);
 	}
 
@@ -126,7 +127,10 @@ public class DashboardPage extends PageBase {
 	}
 
 	public List<String> getErrorMessage() {
+		List<String> errorMessageList = new ArrayList<String>();
 		waitTillElementVisible(errorMessageList_label);
-		return getTexts(errorMessageList_label);
+		errorMessageList = getTexts(errorMessageList_label);
+		closeProjectWindow();
+		return errorMessageList;
 	}	
 }
