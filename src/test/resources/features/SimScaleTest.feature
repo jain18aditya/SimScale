@@ -20,7 +20,6 @@ Feature: Create new project workflow
     When User deletes "<ProjectTitle>"
     Then validate "<ProjectTitle>" is deleted
     And Logout the user
-    And close the browser
 
     Examples: 
       | ProjectTitle |
