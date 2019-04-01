@@ -1,7 +1,7 @@
 # SimScaleTest
 
 ## Test Strategy document:
-https://docs.google.com/document/d/1KTkrOEQerUPJ9lYC-OiFYhvoN_1awZlTjVZ0Hw1oi1c/edit?ts=5c9b15f3#
+https://docs.google.com/document/d/11rzaEzG5paL5MxylrZONn4wZ9GthlCybTd_56xggyCs/edit
 
 Framework Details:
 1. Framework is written in Page Object Model where starting point will be Cucumber feature files.
